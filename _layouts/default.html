@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <meta name="description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ '/assets/images/favicon.png' | relative_url }}">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta property="og:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ page.url | absolute_url }}">
+    {% if page.image %}<meta property="og:image" content="{{ page.image | absolute_url }}">{% endif %}
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+    <meta name="twitter:description" content="{% if page.excerpt %}{{ page.excerpt | strip_html | truncatewords: 20 }}{% else %}{{ site.description }}{% endif %}">
+    {% if page.image %}<meta name="twitter:image" content="{{ page.image | absolute_url }}">{% endif %}
+</head>
+
+<body>
+    <div class="site-container">
+        <div class="site-wrapper">
+            <!-- Header & Navigation -->
+            <header class="site-header">
+                <h1 class="site-title">
+                    <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+                </h1>
+                <nav class="site-nav">
+                    {% for nav_item in site.nav_items %}
+                    <a href="{{ nav_item.url | relative_url }}" 
+                       class="{% if nav_item.url == page.url %}active{% endif %}">
+                        {{ nav_item.title }}
+                    </a>
+                    {% endfor %}
+                </nav>
+            </header>
+
+            <!-- Main Content -->
+            <main>
+                {{ content }}
+            </main>
+
+            <!-- Footer -->
+            <footer class="site-footer">
+                <p>&copy; {{ 'now' | date: "%Y" }} {{ site.author }}. 
+                <a href="https://github.com/{{ site.github_username }}" style="text-decoration: none; color: var(--accent-link);">Open source</a> on GitHub.</p>
+            </footer>
+        </div>
+    </div>
+</body>
+
+</html>

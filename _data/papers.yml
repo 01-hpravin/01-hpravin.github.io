@@ -1,0 +1,13 @@
+# research paper format
+
+# E.g..
+
+# - date: 2015-03-09
+#   title: Distilling the Knowledge in a Neural Network
+#   authors: Geoffrey Hinton, Oriol Vinyals, Jeff Dean
+#   venue: NIPS Deep Learning and Representation Learning Workshop
+#   links:
+#     - label: arXiv
+#       url: "https://arxiv.org/abs/1503.02531"
+#     - label: PDF
+#       url: "https://arxiv.org/pdf/1503.02531"

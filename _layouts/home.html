@@ -1,0 +1,75 @@
+---
+layout: default
+---
+
+<div class="home-hero">
+    {% if site.author_image %}
+    <img src="{{ site.author_image | relative_url }}" alt="{{ site.author }}" class="hero-image">
+    {% endif %}
+    
+    <div class="hero-bio">
+        {{ page.bio | markdownify }}
+        
+        {% if site.contact_links %}
+        <div class="contact-links">
+            {% for link in site.contact_links %}
+            <a href="{{ link.url }}">{{ link.label }}</a>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% if site.papers %}
+<section class="papers-section">
+    <h2>Papers</h2>
+    {% for paper in site.papers %}
+    <div class="paper-item">
+        <div class="paper-date">{{ paper.date | date: "%Y %b" }}</div>
+        <div class="paper-content">
+            <div class="paper-title">
+                {% if paper.url %}
+                <a href="{{ paper.url }}">{{ paper.title }}</a>
+                {% else %}
+                {{ paper.title }}
+                {% endif %}
+            </div>
+            {% if paper.authors %}<div class="paper-authors">{{ paper.authors }}</div>{% endif %}
+            {% if paper.venue %}<div class="paper-venue">{{ paper.venue }}</div>{% endif %}
+            {% if paper.links %}
+            <div class="paper-links">
+                {% for link in paper.links %}
+                <a href="{{ link.url }}">{{ link.label }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+</section>
+{% endif %}
+
+{% if site.posts %}
+<section class="posts-section">
+    <h2>Blog</h2>
+    {% for post in site.posts limit: 5 %}
+    <div class="post-item">
+        <div class="post-date">{{ post.date | date: "%Y %b %d" }}</div>
+        <div class="post-content">
+            <div class="post-title">
+                <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+            </div>
+            {% if post.excerpt %}
+            <p>{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    
+    {% if site.posts.size > 5 %}
+    <p style="text-align: center; margin-top: 2rem;">
+        <a href="{{ '/blog' | relative_url }}">View all posts →</a>
+    </p>
+    {% endif %}
+</section>
+{% endif %}

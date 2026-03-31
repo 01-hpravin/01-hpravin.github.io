@@ -1,0 +1,36 @@
+---
+layout: default
+---
+
+<h1>{{ page.title }}</h1>
+
+<section class="papers-section">
+    {% if site.data.papers %}
+        {% assign papers = site.data.papers | sort: 'date' | reverse %}
+        {% for paper in papers %}
+        <div class="paper-item">
+            <div class="paper-date">{{ paper.date | date: "%Y %b" }}</div>
+            <div class="paper-content">
+                <div class="paper-title">
+                    {% if paper.url %}
+                    <a href="{{ paper.url }}">{{ paper.title }}</a>
+                    {% else %}
+                    {{ paper.title }}
+                    {% endif %}
+                </div>
+                {% if paper.authors %}<div class="paper-authors">{{ paper.authors }}</div>{% endif %}
+                {% if paper.venue %}<div class="paper-venue">{{ paper.venue }}</div>{% endif %}
+                {% if paper.links %}
+                <div class="paper-links">
+                    {% for link in paper.links %}
+                    <a href="{{ link.url }}">{{ link.label }}</a>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No papers found. Add entries to _data/papers.yml</p>
+    {% endif %}
+</section>
