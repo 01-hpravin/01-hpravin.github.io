@@ -8,7 +8,15 @@ layout: default
     {% endif %}
     
     <div class="hero-bio">
-        {{ page.bio | markdownify }}
+        <h1 style="margin: 0 0 0.5rem 0;">{{ site.title }}</h1>
+        
+        {% if page.pronouns %}
+        <p style="font-style: italic; margin: 0 0 0.5rem 0; color: var(--text-secondary);">{{ page.pronouns }}</p>
+        {% endif %}
+        
+        {% if page.title_line %}
+        <p style="margin: 0 0 1rem 0; font-weight: 500;">{{ page.title_line }}</p>
+        {% endif %}
         
         {% if site.contact_links %}
         <div class="contact-links">
@@ -19,6 +27,12 @@ layout: default
         {% endif %}
     </div>
 </div>
+
+{% if page.bio %}
+<div class="bio-section" style="margin-top: 2rem;">
+    {{ page.bio | markdownify }}
+</div>
+{% endif %}
 
 {% if site.papers %}
 <section class="papers-section">
