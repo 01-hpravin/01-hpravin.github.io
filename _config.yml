@@ -34,6 +34,8 @@ nav_items:
     url: /papers
   - title: Blog
     url: /blog
+  - title: Experiments
+    url: /experiments
 
 # Profile
 author_image: /assets/images/cherry-flower.jpg
